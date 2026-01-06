@@ -10,13 +10,15 @@ It connects to a **PPTP** VPN server and exposes the connection as standard **SO
 
 ## ✨ Features
 
-* **🪄 Zero Host Configuration**: No need to manually run `modprobe` or mess with `iptables` on your host machine. The container handles kernel modules and GRE connection tracking automatically using a safe `nsenter` approach upon startup.
-* **🛡 Clean Network Isolation**: Runs in **Docker Bridge mode**. It does *not* require `--net=host`. It modifies only the necessary connection tracking rules on the host without taking over the host's network interfaces.
-* **🔌 Flexible Connectivity**: Exposes standard proxy ports (1080/8888) that can be mapped to any port you like.
-* **🔒 Auth Support**: Supports optional username/password authentication for the SOCKS/HTTP proxy.
-* **❤️ Auto-Reconnection**: Built-in watchdog ensures the VPN connection stays alive.
+- **🪄 Zero Host Configuration**: No need to manually run `modprobe` or mess with `iptables` on your host machine. The container handles kernel modules and GRE connection tracking automatically using a safe `nsenter` approach upon startup.
+- **🛡 Clean Network Isolation**: Runs in **Docker Bridge mode**. It does *not* require `--net=host`. It modifies only the necessary connection tracking rules on the host without taking over the host's network interfaces.
+- **🔌 Flexible Connectivity**: Exposes standard proxy ports (1080/8888) that can be mapped to any port you like.
+- **🔒 Auth Support**: Supports optional username/password authentication for the SOCKS/HTTP proxy.
+- **❤️ Auto-Reconnection**: Built-in watchdog ensures the VPN connection stays alive.
 
 ## 🚀 Quick Start
+
+Download the configs:
 
 ```bash
 wget https://raw.githubusercontent.com/jasongzy/pptp2proxy/main/docker-compose.yml
@@ -28,7 +30,7 @@ Edit the `.env` file with your VPN details, and optionally modify the port mappi
 Then run:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Enjoy!
@@ -55,11 +57,9 @@ If you prefer to build the image locally or want to modify the source code:
 
 3. Build and run
 
-
    ```bash
-   docker-compose up -d --build --force-recreate
+   docker compose up -d --build --force-recreate
    ```
-
 
 ## 🧪 Verification
 
