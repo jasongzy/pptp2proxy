@@ -1,0 +1,21 @@
+services:
+  pptp2proxy:
+    # build: .
+    image: jasongzy/pptp2proxy:latest
+    container_name: pptp2proxy
+    env_file:
+      - .env
+    restart: unless-stopped
+    privileged: true
+    # network_mode: host
+    network_mode: bridge
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /proc:/host/proc:ro
+    ports:
+      - 1080:1080 # SOCKS5
+      - 8888:8888 # HTTP
+    devices:
+      - /dev/ppp
+    cap_add:
+      - NET_ADMIN
