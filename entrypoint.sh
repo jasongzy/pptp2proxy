@@ -32,8 +32,16 @@ fi
 
 pptpsetup --create vpn --server "$VPN_SERVER" --username "$VPN_USER" --password "$VPN_PASS" --encrypt
 
-echo "nodefaultroute" >>/etc/ppp/peers/vpn
-echo "ipparam vpn" >>/etc/ppp/peers/vpn
+cat >>/etc/ppp/peers/vpn <<EOF
+nodefaultroute
+ipparam vpn
+persist
+maxfail 0
+lcp-echo-interval 30
+lcp-echo-failure 3
+mtu 1400
+mru 1400
+EOF
 
 (
     while sleep 10; do
