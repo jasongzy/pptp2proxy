@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --no-cache pptpclient 3proxy iproute2 bash curl perl iptables kmod util-linux \
+    && apk add --no-cache pptpclient 3proxy iproute2 bash curl perl iptables kmod util-linux tzdata \
     && rm -rf /var/cache/apk/*
 
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
